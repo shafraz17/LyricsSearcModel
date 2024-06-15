@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Results</title>
+  </head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    .lyrics {
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .results {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .chart {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+  <body>
+    <section class="container">
+      <h1>Prediction Results</h1>
+      <p class="lyrics">{{ lyrics }}</p>
+      <p class="results">The predicted genre is: <b>{{ prediction }}</b></p>
+      <img class="chart" src="{{chart_img}}" alt="Pie chart of genre probabilities" />
+      <button onclick="window.location.href='/'">Predict another</button>
+    </section>
+  </body>
+  {% include 'footer.html' %}
+</html>

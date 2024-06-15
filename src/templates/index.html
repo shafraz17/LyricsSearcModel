@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Song Predictor</title>
+  </head>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+  <body>
+    <section class="container">
+      <h1>Song Genre Predictor from Lyrics</h1>
+
+      <form action="/predict" method="post">
+        <textarea
+          id="lyrics"
+          name="lyrics"
+          rows="10"
+          cols="50"
+          placeholder="Enter the lyrics of the song here..."
+        ></textarea>
+        <button type="submit">Predict</button>
+      </form>
+    </section>
+
+    <script>
+      const form = document.querySelector("form");
+      const submitButton = document.querySelector("button");
+
+      form.addEventListener("submit", (event) => {
+        submitButton.textContent = "Running prediction...";
+        submitButton.disabled = true;
+
+          const loaderContainer = document.createElement('div');
+          loaderContainer.className = 'loader-container';
+          const textarea = document.getElementById('lyrics');
+          textarea.parentNode.insertBefore(loaderContainer, textarea);
+          loaderContainer.appendChild(textarea);
+
+          // Create and show loader
+          const loader = document.createElement('div');
+          loader.className = 'loader';
+          loaderContainer.appendChild(loader);
+      });
+    </script>
+  </body>
+
+  {% include 'footer.html' %}
+</html>
